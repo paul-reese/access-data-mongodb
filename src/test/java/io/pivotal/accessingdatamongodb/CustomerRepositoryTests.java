@@ -1,4 +1,4 @@
-package com.example.accessingdatamongodb;
+package io.pivotal.accessingdatamongodb;
 /*
  * Copyright 2016 the original author or authors.
  *
@@ -19,15 +19,13 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
-
-import com.example.accessingdatamongodb.Customer;
-import com.example.accessingdatamongodb.CustomerRepository;
 
 @SpringBootTest
 public class CustomerRepositoryTests {
@@ -60,7 +58,7 @@ public class CustomerRepositoryTests {
 
 		List<Customer> result = repository.findByLastName("Beauford");
 
-		assertThat(result).hasSize(1).extracting("firstName").contains("Carter");
+		Assertions.assertThat(result).hasSize(1).extracting("firstName").contains("Carter");
 	}
 
 	@Test
@@ -70,6 +68,6 @@ public class CustomerRepositoryTests {
 
 		List<Customer> result = repository.findAll(Example.of(probe));
 
-		assertThat(result).hasSize(2).extracting("firstName").contains("Dave", "Oliver August");
+		Assertions.assertThat(result).hasSize(2).extracting("firstName").contains("Dave", "Oliver August");
 	}
 }

@@ -1,4 +1,4 @@
-package com.example.accessingdatamongodb;
+package io.pivotal.accessingdatamongodb;
 
 import java.util.List;
 
