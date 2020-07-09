@@ -1,0 +1,10 @@
+---
+applications:
+  - name: accessing-data-mongodb
+    memory: 1G
+    instances: 1
+    random-route: false
+    path: ./target/accessing-data-mongodb-0.0.1-SNAPSHOT.jar
+    health-check-type: http
+    health-check-http-endpoint: /health
+    #health-check-http-endpoint: /actuator/health
