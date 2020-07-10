@@ -25,22 +25,12 @@ public class HealthController {
         return doMongoHealthCheck();
     }
 
-    @RequestMapping("/spring-cloud-services")
-    public String sprinCloudServices() {
-        // add health check against SCS config server
-        return doSpringCloudServiceHealthCheck();
-    }
-
     private String doMongoHealthCheck() throws Exception {
         Assert.notNull(mongoTemplate, "MongoOps must not be null");
         Document result = mongoTemplate.executeCommand("{ buildInfo: 1 }");
 
         System.out.println("version: " + result.get("version"));
         Assert.notNull(result.get("version"), "MongoDB version not in result");
-        return "up";
-    }
-
-    private String doSpringCloudServiceHealthCheck() {
         return "up";
     }
 }
