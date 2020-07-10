@@ -14,11 +14,6 @@ public class AccessingDataMongodbApplication implements CommandLineRunner {
 	@Autowired
 	private CustomerRepository repository;
 
-	@GetMapping("/healthCheck")
-	public String health() {
-		return "up";
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(AccessingDataMongodbApplication.class, args);
 	}
