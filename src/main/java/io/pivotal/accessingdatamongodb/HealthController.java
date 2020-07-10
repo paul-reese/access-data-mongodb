@@ -19,23 +19,28 @@ public class HealthController {
 
     @RequestMapping("/mongodb")
     public String mongoDbHealthCheck() throws Exception {
-        // add healthcheck to MongoDB
-        doMongoHealthCheck();
-        return "up";
+        // return result of health check, need to prevent DDoS, hide behind /actuator?
+
+        // how to swallow expception and return proper HTTP error code: service unavailable
+        return doMongoHealthCheck();
     }
 
     @RequestMapping("/spring-cloud-services")
     public String sprinCloudServices() {
         // add health check against SCS config server
+        return doSpringCloudServiceHealthCheck();
+    }
+
+    private String doMongoHealthCheck() throws Exception {
+        Assert.notNull(mongoTemplate, "MongoOps must not be null");
+        Document result = mongoTemplate.executeCommand("{ buildInfo: 1 }");
+
+        System.out.println("version: " + result.get("version"));
+        Assert.notNull(result.get("version"), "MongoDB version not in result");
         return "up";
     }
 
-    private boolean doMongoHealthCheck() throws Exception {
-        Assert.notNull(mongoTemplate, "MongoOps must not be null");
-        Document result = mongoTemplate.executeCommand("{ buildInfo: 1 }");
-        // strip out the results to see the "version" in JSON result and return binary
-        //String version = (String) result.get("version");
-        System.out.println(result.toJson());
-        return false;
+    private String doSpringCloudServiceHealthCheck() {
+        return "up";
     }
 }
