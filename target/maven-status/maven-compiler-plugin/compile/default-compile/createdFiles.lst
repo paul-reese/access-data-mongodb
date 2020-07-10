@@ -1,0 +1,5 @@
+io/pivotal/accessingdatamongodb/HealthController.class
+io/pivotal/accessingdatamongodb/CustomerRepository.class
+io/pivotal/accessingdatamongodb/AccessingDataMongodbApplication.class
+io/pivotal/accessingdatamongodb/Customer.class
+io/pivotal/accessingdatamongodb/CustomerController.class
